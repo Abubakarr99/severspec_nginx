@@ -12,7 +12,13 @@ jobs:
       - name: Login to docker hub
         id: login
         run: docker login -u ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_PASSWORD }}
+      - name: Install bundler for testing
+        id: bundle
+        run: apt-get install bundler
+      - name: Install dependencies
+        id: bundler_dependencies
+        run: bundler install --gemfile=Gemfile
       - name: Build the image and test
         id: build
-        run: bundle exec rspec --color --format documentation
+        run: bundler exec rspec --color --format documentation
 
