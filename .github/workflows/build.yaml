@@ -14,7 +14,7 @@ jobs:
         run: docker login -u ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_PASSWORD }}
       - name: Install bundler for testing
         id: bundle
-        run: apt-get install bundler
+        run: sudo apt-get install -y bundler
       - name: Install dependencies
         id: bundler_dependencies
         run: bundler install --gemfile=Gemfile
